@@ -1,0 +1,93 @@
+:root {
+  color-scheme: dark;
+  --bg: #14161a;
+  --panel: #1d2026;
+  --border: #2c3038;
+  --accent: #e0574a;
+  --text: #e8e8ea;
+  --muted: #8b8f98;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+h1 { font-size: 20px; margin: 0 0 4px; }
+.subtitle { color: var(--muted); font-size: 13px; margin: 0 0 24px; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.panel h2 {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 12px;
+}
+
+.row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+button {
+  background: var(--accent);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button.secondary {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+select, input[type="file"] {
+  background: #111316;
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 8px;
+}
+
+.knob-group { display: flex; flex-direction: column; gap: 4px; min-width: 140px; }
+.file-picker { display: flex; align-items: center; gap: 6px; }
+.file-picker button { padding: 6px 10px; }
+.knob-group label { font-size: 12px; color: var(--muted); display: flex; justify-content: space-between; }
+input[type="range"] { width: 100%; }
+
+.meter-track {
+  width: 100%;
+  height: 10px;
+  background: #0d0e10;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.meter-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf7d, var(--accent));
+  transition: width 60ms linear;
+}
+
+.hint { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.error { color: #ff8a80; font-size: 13px; }
+.tag { font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #262a32; color: var(--muted); }
