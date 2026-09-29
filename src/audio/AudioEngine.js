@@ -20,6 +20,7 @@ export class AudioEngine {
     this.inputGain = null;
     this.outputGain = null;
     this.analyser = null;
+    this.tunerAnalyser = null;
     this.mediaStream = null;
     this.cabEnabled = false;
     this.gateThresholdDb = -96;
@@ -39,6 +40,9 @@ export class AudioEngine {
     this.outputGain = this.ctx.createGain();
     this.analyser = this.ctx.createAnalyser();
     this.analyser.fftSize = 1024;
+    this.tunerAnalyser = this.ctx.createAnalyser();
+    this.tunerAnalyser.fftSize = 2048;
+    this.tunerAnalyser.smoothingTimeConstant = 0;
 
     this.gateNode = new AudioWorkletNode(this.ctx, 'nam-gate-processor', {
       numberOfInputs: 1,
@@ -99,6 +103,7 @@ export class AudioEngine {
     this.inputNode?.disconnect();
     this.inputNode = this.ctx.createMediaStreamSource(this.mediaStream);
     this.inputNode.connect(this.inputGain);
+    this.inputNode.connect(this.tunerAnalyser);
   }
 
   async loadModel(arrayBuffer) {
@@ -176,6 +181,13 @@ export class AudioEngine {
     let sum = 0;
     for (let i = 0; i < data.length; i++) sum += data[i] * data[i];
     return Math.sqrt(sum / data.length);
+  }
+
+  getTunerBuffer() {
+    if (!this.tunerAnalyser) return null;
+    const data = new Float32Array(this.tunerAnalyser.fftSize);
+    this.tunerAnalyser.getFloatTimeDomainData(data);
+    return data;
   }
 
   suspend() { return this.ctx?.suspend(); }
