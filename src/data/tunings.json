@@ -1,0 +1,35 @@
+{
+  "e-standard": {
+    "name": "E standard",
+    "strings": [
+      { "name": "E4", "frequency": 329.63 },
+      { "name": "B3", "frequency": 246.94 },
+      { "name": "G3", "frequency": 196.00 },
+      { "name": "D3", "frequency": 146.83 },
+      { "name": "A2", "frequency": 110.00 },
+      { "name": "E2", "frequency": 82.41 }
+    ]
+  },
+  "drop-d": {
+    "name": "Drop D",
+    "strings": [
+      { "name": "E4", "frequency": 329.63 },
+      { "name": "B3", "frequency": 246.94 },
+      { "name": "G3", "frequency": 196.00 },
+      { "name": "D3", "frequency": 146.83 },
+      { "name": "A2", "frequency": 110.00 },
+      { "name": "D2", "frequency": 73.42 }
+    ]
+  },
+  "drop-c-sharp": {
+    "name": "Drop C#",
+    "strings": [
+      { "name": "D#4", "frequency": 311.13 },
+      { "name": "A#3", "frequency": 233.08 },
+      { "name": "F#3", "frequency": 185.00 },
+      { "name": "C#3", "frequency": 138.59 },
+      { "name": "G#2", "frequency": 103.83 },
+      { "name": "C#2", "frequency": 69.30 }
+    ]
+  }
+}

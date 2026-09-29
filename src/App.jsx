@@ -4,6 +4,7 @@ import DeviceSelector from './components/DeviceSelector.jsx';
 import ModelBrowser from './components/ModelBrowser.jsx';
 import AmpRack from './components/AmpRack.jsx';
 import LevelMeter from './components/LevelMeter.jsx';
+import Tuner from './components/Tuner.jsx';
 
 export default function App() {
   const engineRef = useRef(null);
@@ -14,6 +15,7 @@ export default function App() {
   const [modelName, setModelName] = useState(null);
   const [irName, setIrName] = useState(null);
   const [notice, setNotice] = useState(null);
+  const [tunerOpen, setTunerOpen] = useState(false);
 
   const start = async () => {
     await engineRef.current.init();
@@ -44,6 +46,14 @@ export default function App() {
       {started && (
         <>
           <DeviceSelector engine={engineRef.current} onConnected={() => setInputConnected(true)} />
+          <div className="panel tuner-launcher">
+            <div>
+              <h2>Tuner</h2>
+              <p className="hint">Open the tuner for guided or free tuning.</p>
+            </div>
+            <button onClick={() => setTunerOpen(true)} type="button">Open tuner</button>
+          </div>
+          {tunerOpen && <Tuner engine={engineRef.current} active={inputConnected} onClose={() => setTunerOpen(false)} />}
           <ModelBrowser
             engine={engineRef.current}
             currentModelName={modelName}
